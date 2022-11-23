@@ -29,6 +29,9 @@ module "eks" {
       vpc_security_group_ids = [
         aws_security_group.node_group_one.id
       ]
+       node_security_group_tags = {
+    "kubernetes.io/cluster/${local.cluster_name}" = null
+  }
     }
 
   }
