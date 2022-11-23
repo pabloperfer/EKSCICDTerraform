@@ -16,6 +16,9 @@ module "eks" {
     # Disabling and using externally provided security groups
     create_security_group = false
   }
+  node_security_group_tags = {
+    "kubernetes.io/cluster/${local.cluster_name}" = null
+  }
 
   eks_managed_node_groups = {
     one = {
@@ -29,9 +32,6 @@ module "eks" {
       vpc_security_group_ids = [
         aws_security_group.node_group_one.id
       ]
-       node_security_group_tags = {
-    "kubernetes.io/cluster/${local.cluster_name}" = null
-  }
     }
 
   }
