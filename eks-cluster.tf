@@ -32,4 +32,11 @@ module "eks" {
     }
 
   }
+    aws_auth_roles = [
+    {
+      rolearn  = "arn:aws:iam::916643836653:role/OrganizationAccountAccessRole"
+      username = "roleorg"
+      groups   = ["system:masters"]
+    },
+  ]
 }
