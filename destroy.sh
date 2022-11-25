@@ -1,7 +1,8 @@
 #!/bin/bash
 set -ex
-devaccount="916643836653"
-stgaccount="395734858022"
+
+read -p 'Development Account: ' devaccount
+read -p 'Staging Account: ' stgaccount
 
 unset AWS_SESSION_TOKEN AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
 
@@ -17,7 +18,7 @@ export AWS_SECRET_ACCESS_KEY=$(echo $OUT1 | jq -r '.Credentials''.SecretAccessKe
 export AWS_SESSION_TOKEN=$(echo $OUT1 | jq -r '.Credentials''.SessionToken');
 account_name=""
 
-if [ $account = "916643836653" ]; then
+if [ $account = $devaccount ]; then
    account_name="development"
 else
    account_name="staging"

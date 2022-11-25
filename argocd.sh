@@ -2,8 +2,9 @@
 set -ex
 
 #Account numbers where we deploy argoCD
-devaccount="916643836653"
-stgaccount="395734858022"
+
+read -p 'Development Account: ' devaccount
+read -p 'Staging Account: ' stgaccount
 
 for account in $devaccount $stgaccount
 do
@@ -11,7 +12,7 @@ unset AWS_SESSION_TOKEN AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
 
 account_name=""
 
-if [ $account = "916643836653" ]; then
+if [ $account = $devaccount ]; then
    account_name="development"
 else
    account_name="staging"
